@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>University - Logout</title>
+</head>
+
+<body>
+    <h1>You are about to log out!</h1>
+    <h2 th:text="Currently logged in as ${firstName} ${lastName} (${username})" />
+    <h2 th:text="${firstName}" />
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Confirm</button>
+    </form>
+    
+    <button onclick="goBack()">Cancel, take me back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

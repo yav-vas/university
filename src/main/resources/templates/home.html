@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>University - Welcome</title>
+</head>
+
+<body>
+    <h1>Welcome to the University!</h1>
+    <h2 th:text="${test_attribute}" />
+    <a href="/register">Register now</a>
+    <div th:if="${param.successfulRegistration}">
+        Your registration as a student was successful!
+        <a href="/login">Log in</a>
+    </div>
+    <h3 th:text="${authenticated_name}" />
+</body>
+
+</html>
