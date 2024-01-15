@@ -1,36 +1,42 @@
 package bg.smg.university.service;
 
-import java.util.Collection;
-import java.util.LinkedList;
-
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import bg.smg.university.model.User;
+import bg.smg.university.repository.UserRepository;
 
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+	private final UserRepository userRepository;
+	
+    public CustomUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+	
 	// TODO: make it so that it does not load always the same username
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Collection<SimpleGrantedAuthority> grantedAuthorities = new LinkedList<SimpleGrantedAuthority>();
-		grantedAuthorities.add(new SimpleGrantedAuthority("STUDENT"));
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encodedPassword = encoder.encode("password");
-		UserDetails user = new User("yav.vasilev@gmail.com",
-				"Iavor",
-				"Vassilev",
-				"Bulgaria",
-				"Han Omurtag 14",
-				"username",
-				encodedPassword,
-				grantedAuthorities,
-				true,
-				false,
-				false);
+		UserDetails user = userRepository.findByUsername(username);
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		String encodedPassword = encoder.encode("password");
+//		System.out.println(encodedPassword);
+//		UserDetails user = new User(0,
+//				"yav.vasilev@gmail.com",
+//				"Iavor",
+//				"Vassilev",
+//				"Bulgaria",
+//				"Han Omurtag 14",
+//				"username",
+//				encodedPassword,
+//				Roles.STUDENT,
+//				true,
+//				false,
+//				false);
 		return user;
 	}
 

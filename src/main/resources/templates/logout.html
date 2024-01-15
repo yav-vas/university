@@ -9,7 +9,6 @@
 
 <body>
     <h1>You are about to log out!</h1>
-    <h2 th:text="Currently logged in as ${firstName} ${lastName} (${username})" />
     <h2 th:text="${firstName}" />
 
     <form th:action="@{/logout}" method="post">
