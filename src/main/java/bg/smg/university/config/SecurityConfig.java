@@ -17,13 +17,6 @@ import bg.smg.university.service.CustomUserDetailsService;
 @EnableWebSecurity
 public class SecurityConfig {
 	
-	private final UserRepository userRepository;
-
-    @Autowired
-    public SecurityConfig(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
@@ -46,7 +39,7 @@ public class SecurityConfig {
 	
 	@Bean
 	public CustomUserDetailsService customUserDetailsService() {
-		return new CustomUserDetailsService(userRepository);
+		return new CustomUserDetailsService();
 	}
 	
 	@Bean

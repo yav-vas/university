@@ -12,16 +12,17 @@ import bg.smg.university.repository.UserRepository;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	private final UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 	
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-	
-	// TODO: make it so that it does not load always the same username
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserDetails user = userRepository.findByUsername(username);
+		
+		if (user == null) {
+			throw new UsernameNotFoundException("No user with the specified username was found in the database");
+		}
+		
 //		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 //		String encodedPassword = encoder.encode("password");
 //		System.out.println(encodedPassword);

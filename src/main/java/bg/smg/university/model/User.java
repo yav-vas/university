@@ -65,5 +65,19 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return enabled;
 	}
+
+	public User(StudentRegisterModel student) {
+		setEmail(student.getEmail());
+		setFirstName(student.getFirstName());
+		setLastName(student.getLastName());
+		setCountry(student.getCountry());
+		setAddress(student.getAddress());
+		setUsername(student.getUsername());
+		setPassword(student.getEncodedPassword());
+		setAuthority(Roles.STUDENT);
+		setEnabled(true);
+		setExpired(false);
+		setLocked(false);
+	}
 	
 }
