@@ -19,5 +19,17 @@ CREATE TABLE user (
 
 CREATE TABLE subject (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	name VARCHAR(255)
+	name VARCHAR(255),
+	teacher_id INT,
+	FOREIGN KEY (teacher_id) REFERENCES user(id)
+);
+
+-- Create student_subject table
+
+CREATE TABLE student_subject (
+	student_id INT NOT NULL,
+	subject_id INT NOT NULL,
+	PRIMARY KEY (student_id, subject_id),
+	FOREIGN KEY (student_id) REFERENCES user(id),
+	FOREIGN KEY (subject_id) REFERENCES subject(id)
 );

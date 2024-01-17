@@ -15,7 +15,7 @@ public class StudentService {
 	private SubjectRepository subjectRepository;
 
 	public List<Subject> getSubjectsList(String username) {
-		List<Subject> subjects = subjectRepository.getAll();
+		List<Subject> subjects = subjectRepository.getSubjectsByUsername(username);
 				
 		/*
 		 * subjects.add(new SubjectTableViewModel("Linear algebra")); subjects.add(new
