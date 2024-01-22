@@ -26,7 +26,6 @@ public class RegisterController {
 			return "register";
 		}
 		
-		
 		userService.registerStudent(student);
 		return "redirect:/?successfulRegistration";
 	}

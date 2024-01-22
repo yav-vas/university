@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>University - Add subject</title>
+</head>
+
+<body>
+    <h1>Welcome to the subject adding page, <span th:text = "${user_first_name}"></span></h1>
+    <div>
+        <h2>Add a new subject</h2>
+        <form th:action="@{/add-subject}" th:object="${SubjectRegisterModel}" method="post">
+            <div>
+                <input type="text" name="name" placeholder="Subject Name">
+            </div>
+            <input type="submit" value="Add Subject" />
+        </form>
+    </div>
+
+</body>
+
+</html>

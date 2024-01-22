@@ -13,9 +13,24 @@
     <a href="/register">Register now</a>
     <div th:if="${param.successfulRegistration}">
         Your registration as a student was successful!
-        <a href="/login">Log in</a>
     </div>
-    <h3 th:text="${authenticated_name}" />
+    <div th:if="${not_logged_in}">
+        <a href="/login"><span th:text="${not_logged_in}"></span></a>
+    </div>
+    <div th:unless="${not_logged_in}">
+        <a href="/logout">Log out</a>
+    </div>
+    <div th:if="${link_add_subject}">
+        <div th:if="${param.subjectAddSuccess}">The new subject was added successfully</div>
+        <a href="/add-subject">Create a new subject</a>
+    </div>
+    <div th:if="${see_my_subjects}">
+        <a href="/subjects">See my subjects</a>
+    </div>
+    <div th:if="${sign_up_for_a_subject}">
+        <div th:if="${param.successfulSignUpForSubject}">You successfully signed up for the subject</div>
+        <a href="/subject-sign-up">Sign up for a new subject</a>
+    </div>
 </body>
 
 </html>

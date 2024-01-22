@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>University - My Subjects</title>
+</head>
+
+<body>
+    <div th:if="${param.continue}"> Successfull login! </div>
+    <h1>Select a subject to sign up for</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Subject name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${subjects_not_signed_up_for.empty}">
+                <td> You are already signed up for all subjects </td>
+            </tr>
+            <tr th:each="subject : ${subjects_not_signed_up_for}">
+                <td><span th:text="${subject.name}"></span></td>
+                <td>
+                    <form th:action="@{/subject-sign-up}" method="post">
+                        <input type="hidden" th:name="subject-id" th:value="${subject.id}" />
+                        <button type="submit">Sign up for this subject</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

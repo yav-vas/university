@@ -13,4 +13,8 @@ public class Subject {
 
 	private @Id int id;
 	private String name;
+	
+	public Subject(SubjectRegisterModel subject) {
+		setName(subject.getName());
+	}
 }
